@@ -1,0 +1,6 @@
+---
+import LandingLayout from '../../layouts/LandingLayout.astro';
+import ComparisonTable from '../../components/ComparisonTable.astro';
+const rows=[{name:'StarHub 优选',protocol:'IPLC / IEPL',latency:'42ms',loss:'0.1%',unlock:'Netflix + AI',price:'¥28/月',href:'/go/starhub/'},{name:'SXX 专线',protocol:'IEPL',latency:'55ms',loss:'0.2%',unlock:'主流全解锁',price:'¥36/月',href:'/go/sxx/'},{name:'青云 BGP',protocol:'三网 BGP',latency:'68ms',loss:'0.6%',unlock:'基础解锁',price:'¥18/月'}];
+---
+<LandingLayout title="节点方案对比" description="按统一维度比较线路架构、晚高峰延迟、丢包、原生解锁与价格。" eyebrow="COMPARE"><ComparisonTable rows={rows}/><p class="mt-5 text-xs leading-6 text-slate-400">说明：当前为项目演示数据，正式上线前必须替换为可复现的真实测试结果，并标注采样时间与测试环境。</p></LandingLayout>

@@ -1,0 +1,47 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+const blueprints = [
+  {id:'basics',title:'机场 VPN 基础入门',icon:'01',guidance:'机场服务通过订阅向客户端提供代理节点，实际体验由入口、跨境线路、出口、负载和本地网络共同决定。',questions:[
+    '机场、VPN 和代理节点分别是什么意思？','机场订阅链接中通常包含哪些信息？','节点名称里的香港、日本、美国代表什么？','为什么机场需要配合客户端才能使用？','机场和传统 VPN 软件有什么区别？','什么是代理模式、规则模式和全局模式？','系统代理和 TUN 模式有什么区别？','机场节点能否保护所有应用的网络流量？','使用机场会不会改变本机公网 IP？','机场可以同时在手机和电脑上使用吗？','机场订阅为什么需要定期更新？','新手第一次使用机场应从哪里开始？']},
+  {id:'purchase',title:'购买、套餐与流量',icon:'02',guidance:'购买前应核对价格、流量、倍率、设备数、有效期、续费规则和退款政策，首次使用更适合短周期验证。',questions:[
+    '第一次购买机场应该选月付还是年付？','按月重置流量和不限时流量有什么区别？','套餐标注的 100GB 流量够用多久？','机场套餐倍率会怎样扣除流量？','为什么部分节点会标注 0.5 倍率或 2 倍率？','按量计费机场适合哪些用户？','机场套餐到期后剩余流量会保留吗？','购买套餐后可以升级或降级吗？','多人共享一个机场账号有什么风险？','机场限制在线设备数量怎么办？','低价机场和高价机场的主要差异是什么？','购买机场前应该保存哪些订单信息？']},
+  {id:'protocol',title:'IPLC、IEPL 与线路协议',icon:'03',guidance:'线路标签只能作为初步参考，仍需结合入口运营商、共享带宽、路由、倍率和晚高峰实测判断。',questions:[
+    'IPLC 专线机场是什么意思？','IEPL 专线与 IPLC 有什么区别？','BGP 中转机场适合什么场景？','公网中转和内网专线的差异是什么？','什么是三网优化和移动、联通、电信入口？','CN2 GIA、9929 和 CMI 线路如何理解？','专线机场晚高峰一定不会拥塞吗？','为什么同一机场不同运营商体验差异明显？','入口节点与落地节点分别负责什么？','中转线路为什么比直连线路更稳定？','节点标注原生 IP 就一定是住宅 IP 吗？','如何判断机场线路宣传是否可信？']},
+  {id:'subscription',title:'订阅链接与配置导入',icon:'04',guidance:'订阅问题应先检查套餐状态、链接完整性、客户端格式、更新时间和网络可达性，避免公开或转发个人订阅地址。',questions:[
+    '复制订阅链接后为什么没有任何节点？','订阅链接打不开应该如何处理？','客户端提示订阅更新失败是什么原因？','机场更换域名后旧订阅还能使用吗？','订阅转换会不会泄露机场订阅地址？','为什么订阅更新后节点数量变少了？','机场订阅链接可以分享给朋友吗？','如何在 Clash Verge Rev 中更新订阅？','Shadowrocket 如何重新下载订阅节点？','Mihomo Party 导入订阅失败怎么办？','Sing-box 订阅格式不兼容如何处理？','重新生成订阅链接后旧链接是否失效？']},
+  {id:'clients',title:'客户端安装与兼容',icon:'05',guidance:'客户端应从可信渠道获取，并根据系统选择兼容版本；遇到异常时先更新软件、备份配置并排除多个代理程序冲突。',questions:[
+    'Windows 使用哪个机场客户端更合适？','macOS 使用 Clash 还是 Sing-box 更方便？','iPhone 为什么通常需要 Shadowrocket？','Android 有哪些常用的机场客户端？','Clash Verge Rev 无法启动怎么办？','客户端提示内核下载失败如何解决？','开启 TUN 模式后无法上网是什么原因？','系统代理开启后部分软件仍不走代理怎么办？','多个代理客户端能否同时运行？','客户端升级后配置消失如何恢复？','如何设置客户端开机自动启动？','客户端日志中哪些信息适合提交给客服？']},
+  {id:'nodes',title:'节点选择、延迟与测速',icon:'06',guidance:'测速应在相同网络和时段记录延迟、抖动、丢包、下载速度与实际业务表现，单次峰值不能代表长期质量。',questions:[
+    '机场节点延迟多少算正常？','延迟低为什么下载速度仍然很慢？','节点测速显示超时但实际能用是什么原因？','如何测试机场节点的真实丢包率？','晚高峰应该在什么时间进行测速？','测速网站结果和视频下载速度为什么不同？','如何选择距离自己更合适的节点地区？','自动选择节点和手动选择节点哪个好？','为什么节点延迟会在几分钟内大幅波动？','游戏加速应该关注延迟还是丢包？','视频观看应该优先选择哪个地区节点？','如何建立自己的机场测速记录表？']},
+  {id:'troubleshooting',title:'连接失败与速度故障',icon:'07',guidance:'故障排查应按套餐、订阅、节点、客户端、系统代理、DNS、本地网络和服务端公告的顺序逐层确认。',questions:[
+    '节点显示可用但所有网页都打不开怎么办？','手机能连接但电脑无法连接是什么原因？','Wi-Fi 能用但蜂窝网络不能用怎么办？','机场突然所有节点都超时如何排查？','切换节点后 IP 地址没有变化怎么办？','开启代理后国内网站访问变慢如何处理？','客户端连接后 DNS 解析失败怎么办？','防火墙拦截代理客户端如何恢复？','TUN 模式导致局域网设备无法访问怎么办？','睡眠唤醒后客户端无法联网如何修复？','只有浏览器能用但其他软件不能用怎么办？','机场维护期间应该如何切换备用方案？']},
+  {id:'streaming',title:'流媒体、ChatGPT 与 AI 解锁',icon:'08',guidance:'解锁能力取决于出口 IP 地区、类型、风险评分和平台策略，需要分别测试登录、内容区域、播放质量和功能完整性。',questions:[
+    'Netflix 能打开但没有目标地区内容怎么办？','YouTube 4K 一直缓冲应该换什么节点？','Disney+ 提示地区不可用如何解决？','ChatGPT 能打开就算原生解锁吗？','ChatGPT 登录时提示不支持当前地区怎么办？','Claude 无法注册或登录与节点有关吗？','Gemini 页面可访问但功能不可用怎么办？','AI 服务频繁要求验证账号是什么原因？','流媒体解锁节点为什么会突然失效？','共享 IP 和原生 IP 对 AI 服务有什么影响？','如何检测节点的 IP 风险和地区归属？','多个 AI 服务应该选择同一个节点吗？']},
+  {id:'security',title:'隐私、安全与账号管理',icon:'09',guidance:'订阅链接和机场账号都属于敏感凭证，应启用独立密码、避免公开分享、及时撤销泄露链接并为重要账号开启双重验证。',questions:[
+    '机场服务商能看到用户访问了哪些网站吗？','使用机场登录银行账号安全吗？','订阅链接泄露后应该立即做什么？','机场账号密码应该如何设置？','为什么不建议购买来源不明的共享账号？','使用公共 Wi-Fi 时还需要开启代理吗？','机场客户端请求管理员权限是否正常？','免费机场可能存在哪些隐私风险？','如何判断机场是否存在日志风险？','机场节点证书异常时应该继续访问吗？','代理规则能否防止 DNS 泄露？','如何安全地备份客户端配置？']},
+  {id:'risk',title:'退款、失联与跑路应急',icon:'10',guidance:'降低风险的关键是控制预付周期、保留订单与公告记录、准备备用服务，并避免因短期折扣一次购买过长时间。',questions:[
+    '机场官网突然无法访问就是跑路了吗？','机场 Telegram 群组消失应该怎么办？','机场停止服务后还能申请退款吗？','如何判断机场是否值得长期续费？','超低价年付套餐可能有哪些风险？','机场频繁更换域名是否正常？','机场公告长期不更新说明什么？','客服多长时间不回复需要提高警惕？','如何为重要工作准备备用机场？','机场节点大规模下线时如何保存证据？','通过第三方支付购买机场如何维权？','选择机场时如何降低跑路损失？']},
+];
+const answerEndings = [
+  '建议先理解基本概念，再结合自己的设备和使用场景决定。','实际操作时应从最小改动开始，每完成一步就重新测试。','如果问题只在特定设备出现，应优先排查该设备的客户端和系统设置。','若多个节点同时异常，应查看服务商公告并测试本地网络。','不要仅凭单次测速下结论，最好在不同日期和晚高峰重复验证。','仍无法确认时，可整理错误截图、节点名称和客户端版本后联系服务商。','涉及价格或套餐规则时，应以服务商当前页面和订单说明为准。','涉及账号与隐私时，应优先更换凭证并停止使用可疑配置。','可同时准备不同线路的备用节点，避免单点故障影响使用。','操作前建议备份订阅和客户端配置，便于出现问题时恢复。','不同地区和运营商结果可能不同，应以本地实测为准。','如果现象持续存在，可对照问题库中的订阅、客户端和连接章节继续排查。'
+];
+const groups = blueprints.map(group => ({...group,items:group.questions.map((question,index)=>[question,`${group.guidance} ${answerEndings[index]}`])}));
+const faqItems = groups.flatMap(group => group.items.map(([question,answer]) => ({'@type':'Question',name:question,acceptedAnswer:{'@type':'Answer',text:answer}})));
+const schema = {'@context':'https://schema.org','@type':'FAQPage',mainEntity:faqItems};
+---
+<BaseLayout title="机场 VPN 常见问题 FAQ 问题库 - 好机场" description="收录 120 个机场 VPN、IPLC、客户端、节点测速、连接故障、流媒体与 ChatGPT 解锁常见问题。">
+  <Fragment slot="head"><script type="application/ld+json" set:html={JSON.stringify(schema)}/></Fragment>
+  <main class="site-container py-8 sm:py-12">
+    <section class="surface mx-auto grid max-w-7xl overflow-hidden lg:grid-cols-[1.1fr_.9fr]">
+      <div class="p-7 sm:p-12"><span class="text-sm font-black tracking-widest text-cyan-700">FAQ KNOWLEDGE BASE · 120 QUESTIONS</span><h1 class="mt-3 text-4xl font-black leading-tight text-slate-950 sm:text-5xl">机场 VPN 常见问题与故障解决库</h1><p class="mt-5 max-w-3xl text-lg leading-8 text-slate-600">120 个独立问题覆盖机场购买、IPLC 与 IEPL、订阅导入、客户端配置、节点测速、连接故障、Netflix、ChatGPT、账号安全和跑路应急。</p><label class="mt-7 block"><span class="sr-only">搜索常见问题</span><input data-faq-search type="search" placeholder="搜索：订阅失败、Clash、IPLC、ChatGPT、Netflix…" class="h-14 w-full rounded-xl border border-slate-300 bg-white/85 px-5 text-base outline-none backdrop-blur focus:border-cyan-600"/></label></div>
+      <img src="https://i.ibb.co/LdQtCkf8/5e706279-dcd9-445d-bfea-b51b1a7ac029.jpg?v=20261005" alt="机场 VPN FAQ 常见问题与故障解决问题库" width="1024" height="576" loading="eager" referrerpolicy="no-referrer" class="h-full min-h-80 w-full object-cover"/>
+    </section>
+    <div data-faq-list class="mx-auto mt-6 grid max-w-7xl gap-5 lg:grid-cols-2">{groups.map(group => <section id={group.id} class="surface scroll-mt-24 p-6 sm:p-8" data-faq-group><div class="mb-5 flex items-center gap-3"><span class="grid h-11 w-11 place-items-center rounded-xl bg-cyan-50 font-black text-cyan-800">{group.icon}</span><h2 class="text-xl font-black text-slate-950">{group.title}</h2></div><div class="grid gap-3">{group.items.map(([question,answer],index) => <details class="rounded-xl border border-slate-200 bg-white/55 p-5" open={index===0} data-faq-item data-search={`${question} ${answer}`}><summary class="cursor-pointer font-bold text-slate-800">{question}</summary><p class="mt-3 text-sm leading-7 text-slate-600">{answer}</p></details>)}</div></section>)}</div>
+    <p data-faq-empty class="mx-auto mt-6 hidden max-w-7xl rounded-xl border border-dashed border-slate-300 bg-white/80 p-8 text-center text-slate-500">没有找到匹配问题，请尝试更换关键词。</p>
+  </main>
+  <script>
+    // @ts-nocheck -- 搜索元素由本页模板保证存在
+    const search=document.querySelector('[data-faq-search]'); const groups=[...document.querySelectorAll('[data-faq-group]')]; const empty=document.querySelector('[data-faq-empty]');
+    search?.addEventListener('input',()=>{const keyword=search.value.trim().toLowerCase();let visible=0;groups.forEach(group=>{let count=0;group.querySelectorAll('[data-faq-item]').forEach(item=>{const hit=!keyword||(item.dataset.search||'').toLowerCase().includes(keyword);item.classList.toggle('hidden',!hit);if(hit)count++;});group.classList.toggle('hidden',count===0);visible+=count;});empty?.classList.toggle('hidden',visible!==0);});
+  </script>
+</BaseLayout>

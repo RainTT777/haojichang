@@ -1,0 +1,9 @@
+---
+import { getCollection } from 'astro:content';
+import LandingLayout from '../../layouts/LandingLayout.astro';
+import { categories } from '../../data/categories';
+export function getStaticPaths(){ return categories.map(category=>({params:{category:category.slug},props:{category}})); }
+const { category } = Astro.props;
+const posts=(await getCollection('blog',({data})=>!data.draft&&data.category===category.slug));
+---
+<LandingLayout title={category.name} description={category.description} eyebrow="CATEGORY"><div class="grid gap-5 md:grid-cols-2 xl:grid-cols-3">{posts.length?posts.map(post=><a href={`/blog/${post.id}/`} class="surface card-hover p-7"><span class="text-xs font-bold text-brand-600">{post.data.publishedAt.toLocaleDateString('zh-CN')}</span><h2 class="mt-3 text-xl font-black text-ink-950">{post.data.title}</h2><p class="mt-3 text-sm leading-6 text-slate-500">{post.data.description}</p></a>):<div class="surface col-span-full p-10 text-center text-slate-500">该分类正在持续更新，欢迎稍后再来。</div>}</div></LandingLayout>

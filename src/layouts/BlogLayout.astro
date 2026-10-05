@@ -1,0 +1,19 @@
+---
+import BaseLayout from './BaseLayout.astro';
+interface Props { title: string; description: string; publishedAt: Date; updatedAt?: Date; category: string; tags?: string[]; readingTime?: string }
+const { title, description, publishedAt } = Astro.props;
+---
+<BaseLayout title={`${title} - 好机场`} description={description} type="article" publishedAt={publishedAt}>
+  <main class="article-page py-8 sm:py-10">
+    <article class="article-frame">
+      <header class="surface article-header overflow-hidden p-7 sm:p-10">
+        <h1 class="text-3xl leading-tight font-black tracking-tight text-ink-950 sm:text-4xl">{title}</h1>
+        <section class="mt-7 border-t border-slate-100 pt-6" aria-label="机场推荐长尾关键词">
+          <h2 class="text-lg font-bold text-slate-900">2026 机场推荐与选购指南</h2>
+          <p class="mt-3 text-base leading-8 text-slate-600">本专题面向正在寻找<strong class="font-semibold text-slate-800">稳定机场推荐、高性价比机场推荐、IPLC 机场推荐与 IEPL 专线机场</strong>的用户，结合晚高峰低延迟、线路倍率、流媒体解锁和 ChatGPT 原生访问能力，整理选购时需要关注的核心指标。</p>
+        </section>
+      </header>
+      <div class="surface prose-cn article-body mt-5 p-7 sm:p-10"><slot /></div>
+    </article>
+  </main>
+</BaseLayout>

@@ -1,0 +1,6 @@
+---
+import { redirects } from '../../data/redirects';
+export function getStaticPaths(){ return Object.keys(redirects).map(id=>({params:{id},props:{target:redirects[id]}})); }
+const { target }=Astro.props;
+return Astro.redirect(target,302);
+---

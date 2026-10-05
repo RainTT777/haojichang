@@ -1,0 +1,18 @@
+---
+import { getCollection } from 'astro:content';
+import LandingLayout from '../../layouts/LandingLayout.astro';
+const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort((a,b)=>b.data.publishedAt.valueOf()-a.data.publishedAt.valueOf());
+---
+<LandingLayout title="机场指南文章库" description="机场评测、线路知识、选购方法、测速判断与流媒体、AI 解锁科普。" eyebrow="AIRPORT GUIDE LIBRARY">
+  <a href="/blog/example-post/" class="article-library-hero">
+    <img src="https://i.ibb.co/gZhYmrkw/5425c780-db59-4e47-9e72-45a5877f3ea2.jpg" alt="好机场机场指南科普文章库" width="1024" height="576" loading="eager" referrerpolicy="no-referrer"/>
+  </a>
+  <section class="article-library-grid" aria-label="机场指南文章列表">
+    {posts.map((post)=><a href={`/blog/${post.id}/`} class="surface article-library-card card-hover">
+      <div class="article-library-card__meta"><span>{post.data.category}</span><time>{post.data.publishedAt.toLocaleDateString('zh-CN')}</time></div>
+      <h2>{post.data.title}</h2>
+      <p>{post.data.description}</p>
+      <div class="article-library-card__foot"><span>{post.data.readingTime}</span><b>阅读文章 →</b></div>
+    </a>)}
+  </section>
+</LandingLayout>

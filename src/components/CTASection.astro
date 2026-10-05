@@ -1,0 +1,5 @@
+---
+interface Props { title?: string; description?: string; primaryHref?: string; primaryLabel?: string }
+const { title = '从真实晚高峰数据开始选择', description = '查看最新榜单、线路架构和原生解锁测试，减少试错成本。', primaryHref = '/brands/', primaryLabel = '查看精选方案' } = Astro.props;
+---
+<section class="relative overflow-hidden rounded-[28px] bg-ink-950 px-6 py-10 text-white shadow-2xl shadow-slate-900/15 sm:px-10"><div class="absolute -top-24 -right-20 size-72 rounded-full bg-brand-400/20 blur-3xl"></div><div class="relative flex flex-col gap-7 lg:flex-row lg:items-center lg:justify-between"><div><h2 class="text-2xl font-black sm:text-3xl">{title}</h2><p class="mt-3 max-w-2xl text-sm leading-7 text-slate-300">{description}</p></div><div class="flex shrink-0 gap-3"><a href={primaryHref} class="rounded-full bg-white px-6 py-3 text-sm font-black text-ink-950 hover:bg-brand-50">{primaryLabel}</a><a href="/about/" class="rounded-full border border-white/20 px-6 py-3 text-sm font-bold text-white hover:bg-white/10">了解评测机制</a></div></div></section>

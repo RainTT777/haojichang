@@ -1,0 +1,11 @@
+---
+import { getCollection } from 'astro:content';
+import LandingLayout from '../../layouts/LandingLayout.astro';
+import BrandCard from '../../components/BrandCard.astro';
+const brandOrder=['edgenova','jilianyun','guangnianti','yuntu','speedworld','kuaili','kexinyun','shunyun','kunpeng'];
+const brands=(await getCollection('brands',({data})=>!data.draft&&data.title!=='示例品牌')).sort((a,b)=>{
+  const aRank=brandOrder.indexOf(a.id); const bRank=brandOrder.indexOf(b.id);
+  return (aRank<0?999:aRank)-(bRank<0?999:bRank);
+});
+---
+<LandingLayout title="机场精选推荐" description="按照线路、晚高峰稳定性、原生解锁、套餐价格与客户端兼容性整理的机场候选清单。" eyebrow="AIRPORT RECOMMENDATIONS"><div class="brand-directory-grid">{brands.map((brand,index)=><BrandCard name={brand.data.title} description={brand.data.description} rating={brand.data.rating} price={brand.data.price} protocol={brand.data.protocol} latency={brand.data.latency} unlock={brand.data.unlock} href={`/brands/${brand.id}/`} rank={index+1}/>)}</div></LandingLayout>

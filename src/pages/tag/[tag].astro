@@ -1,0 +1,7 @@
+---
+import { getCollection } from 'astro:content';
+import LandingLayout from '../../layouts/LandingLayout.astro';
+export async function getStaticPaths(){ const posts=await getCollection('blog'); const homepageTags=['性价比之王','SXX 机场深度评测','StarHub 机场 4K 测速','晚高峰评测','新加坡原生IP','IPLC 专线','解锁流媒体','AI直连','游戏低延迟']; const tags=[...new Set([...posts.flatMap(post=>post.data.tags),'deals','unlock',...homepageTags])]; return tags.map(tag=>({params:{tag},props:{tag}})); }
+const { tag }=Astro.props; const posts=await getCollection('blog',({data})=>data.tags.includes(tag));
+---
+<LandingLayout title={`标签：${tag}`} description={`浏览与“${tag}”相关的评测、教程和专题内容。`} eyebrow="TAG"><div class="grid gap-5 md:grid-cols-2">{posts.length?posts.map(post=><a class="surface card-hover p-7" href={`/blog/${post.id}/`}><h2 class="text-xl font-black text-ink-950">{post.data.title}</h2><p class="mt-3 text-sm leading-6 text-slate-500">{post.data.description}</p></a>):<div class="surface col-span-full p-10 text-center text-slate-500">更多相关内容正在整理。</div>}</div></LandingLayout>

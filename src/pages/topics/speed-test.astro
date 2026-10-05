@@ -1,0 +1,6 @@
+---
+import LandingLayout from '../../layouts/LandingLayout.astro';
+import ComparisonTable from '../../components/ComparisonTable.astro';
+const rows=[{name:'线路 A',protocol:'IPLC',latency:'42ms',loss:'0.1%',unlock:'Netflix + ChatGPT',price:'¥28/月'},{name:'线路 B',protocol:'IEPL',latency:'55ms',loss:'0.2%',unlock:'主流全解锁',price:'¥36/月'},{name:'线路 C',protocol:'BGP',latency:'78ms',loss:'1.8%',unlock:'基础解锁',price:'¥18/月'}];
+---
+<LandingLayout title="晚高峰测速实验室" description="公开采样窗口、测试指标与演示数据结构，正式发布前请替换为实际测量结果。" eyebrow="SPEED TEST LAB"><ComparisonTable rows={rows}/><section class="surface prose-cn mt-8 p-8"><h2>我们如何测速</h2><p>固定在每天 20:00–23:00 采集延迟、丢包、下载速率与抖动数据，并记录入口运营商、目标节点和本地网络环境。单次峰值不参与推荐结论。</p><h2>如何阅读数据</h2><p>低延迟并不必然代表高质量。需要同时观察丢包、抖动、跨时段稳定性，以及流媒体和 AI 服务对出口 IP 的地区识别。</p></section></LandingLayout>

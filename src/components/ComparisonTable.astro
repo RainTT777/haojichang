@@ -1,0 +1,6 @@
+---
+interface Row { name: string; protocol: string; latency: string; loss: string; unlock: string; price: string; href?: string }
+interface Props { rows: Row[]; title?: string }
+const { rows, title = '方案横向对比' } = Astro.props;
+---
+<section class="surface overflow-hidden"><div class="p-6 sm:p-8"><h2 class="text-2xl font-black text-ink-950">{title}</h2></div><div class="overflow-x-auto"><table class="w-full min-w-190 text-left text-sm"><thead class="bg-slate-50 text-xs uppercase tracking-wide text-slate-500"><tr><th class="px-6 py-4">方案</th><th class="px-6 py-4">线路</th><th class="px-6 py-4">延迟</th><th class="px-6 py-4">丢包</th><th class="px-6 py-4">原生解锁</th><th class="px-6 py-4">价格</th><th class="px-6 py-4"></th></tr></thead><tbody class="divide-y divide-slate-100">{rows.map((row) => <tr class="hover:bg-brand-50/40"><td class="px-6 py-5 font-black text-ink-950">{row.name}</td><td class="px-6 py-5">{row.protocol}</td><td class="px-6 py-5 font-bold text-brand-600">{row.latency}</td><td class="px-6 py-5">{row.loss}</td><td class="px-6 py-5">{row.unlock}</td><td class="px-6 py-5 font-bold">{row.price}</td><td class="px-6 py-5">{row.href && <a href={row.href} rel="nofollow sponsored" class="rounded-full bg-ink-950 px-4 py-2 text-xs font-bold text-white">查看</a>}</td></tr>)}</tbody></table></div></section>

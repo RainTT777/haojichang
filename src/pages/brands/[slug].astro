@@ -1,0 +1,9 @@
+---
+import { getCollection, render } from 'astro:content';
+import LandingLayout from '../../layouts/LandingLayout.astro';
+import CTASection from '../../components/CTASection.astro';
+export async function getStaticPaths(){ const entries=await getCollection('brands'); return entries.map(entry=>({params:{slug:entry.id},props:{entry}})); }
+const { entry }=Astro.props; const { Content }=await render(entry);
+const schema={'@context':'https://schema.org','@type':'Review',name:entry.data.title,reviewBody:entry.data.description,itemReviewed:{'@type':'Service',name:entry.data.title,serviceType:entry.data.protocol,offers:{'@type':'Offer',price:String(entry.data.price),priceCurrency:'CNY'}},reviewRating:{'@type':'Rating',ratingValue:String(entry.data.rating),bestRating:'5'}};
+---
+<LandingLayout title={entry.data.title} description={entry.data.description} eyebrow="BRAND REVIEW"><Fragment slot="head"><script type="application/ld+json" set:html={JSON.stringify(schema)}/></Fragment><div class="grid gap-6 lg:grid-cols-[1fr_320px]"><article class="surface prose-cn p-7 sm:p-12"><Content/></article><aside class="surface h-fit p-6 lg:sticky lg:top-24"><div class="text-3xl font-black text-ink-950">★ {entry.data.rating}</div><dl class="mt-5 grid gap-3 text-sm"><div class="surface-soft p-4"><dt class="text-slate-400">线路</dt><dd class="mt-1 font-bold">{entry.data.protocol}</dd></div><div class="surface-soft p-4"><dt class="text-slate-400">延迟</dt><dd class="mt-1 font-bold text-brand-600">{entry.data.latency}</dd></div><div class="surface-soft p-4"><dt class="text-slate-400">解锁</dt><dd class="mt-1 font-bold">{entry.data.unlock}</dd></div></dl><a href={`/go/${entry.data.affiliateId ?? 'starhub'}/`} rel="nofollow sponsored" class="mt-5 block rounded-full bg-ink-950 py-3 text-center text-sm font-black text-white">前往方案</a></aside></div><div class="mt-10"><CTASection/></div></LandingLayout>

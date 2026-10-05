@@ -1,0 +1,64 @@
+---
+const airports = [
+  ['edgenova','边缘节点 EdgeNova'],['jilianyun','极连云 JiLianYun'],['guangnianti','光年梯 GuangNianTi'],
+  ['yuntu','云图 YunTu'],['speedworld','速界 SuJie'],['kuaili','快狸 KuaiLi'],
+  ['kexinyun','可信云 KeXinYun'],['shunyun','瞬云 ShunYun'],['kunpeng','鲲鹏加速 KunPeng'],
+];
+---
+<section class="surface p-4" data-live-speed-test>
+  <div class="flex flex-wrap items-center justify-between gap-3">
+    <h2 class="flex items-center gap-2 text-base font-bold text-slate-950 before:h-4 before:w-[3px] before:rounded-full before:bg-cyan-400">机场节点动态测速</h2>
+    <span class="rounded-full bg-emerald-50 px-3 py-1 text-xs font-bold text-emerald-700"><i class="mr-1 inline-block h-2 w-2 animate-pulse rounded-full bg-emerald-500"></i>动态刷新中</span>
+  </div>
+  <div class="mt-3 grid gap-3 rounded-xl border border-slate-200 bg-slate-50 p-3 sm:grid-cols-[1fr_auto_auto] sm:items-end">
+    <label class="text-sm font-bold text-slate-700">选择机场<select data-airport-select class="mt-1 block h-11 w-full rounded-lg border border-slate-300 bg-white px-3 text-sm font-semibold outline-none focus:border-cyan-500">{airports.map(([value,label]) => <option value={value}>{label}</option>)}</select></label>
+    <div class="rounded-lg bg-white px-4 py-2 text-sm"><span class="text-slate-500">实时延迟</span><strong data-latency class="ml-2 text-lg text-cyan-600">42ms</strong></div>
+    <div class="rounded-lg bg-white px-4 py-2 text-sm"><span class="text-slate-500">实时丢包</span><strong data-loss class="ml-2 text-lg text-rose-500">0.1%</strong></div>
+  </div>
+  <div class="mt-3 border-t border-slate-100 pt-3">
+    <div class="mb-2 flex flex-wrap items-center justify-between gap-2 text-sm"><p><strong data-airport-name>边缘节点 EdgeNova</strong> · <span data-route>IPLC 专线</span></p><p class="text-slate-400">更新于 <time data-updated>--:--:--</time></p></div>
+    <svg role="img" aria-label="机场节点动态延迟与丢包走势图" viewBox="0 0 720 260" class="w-full overflow-visible">
+      <g stroke="#dbe5ea"><path d="M45 25h650M45 75h650M45 125h650M45 175h650M45 225h650M45 25v200M175 25v200M305 25v200M435 25v200M565 25v200M695 25v200"/></g>
+      <path data-latency-path fill="none" stroke="#0aa6cc" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      <path data-loss-path fill="none" stroke="#eb6f91" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <g fill="#71808a" font-size="10"><text x="16" y="29">100</text><text x="23" y="79">75</text><text x="23" y="129">50</text><text x="23" y="179">25</text><text x="31" y="229">0</text><text x="40" y="246">18:00</text><text x="330" y="246">20:30</text><text x="662" y="246">23:00</text></g>
+    </svg>
+    <div class="mt-1 flex gap-5 text-xs text-slate-500"><span><i class="mr-1 inline-block h-[3px] w-5 bg-cyan-500 align-middle"></i>延迟波动</span><span><i class="mr-1 inline-block h-[3px] w-5 bg-rose-400 align-middle"></i>丢包波动</span></div>
+    <p class="mt-3 text-sm leading-6 text-slate-600">当前展示 <b data-summary class="text-cyan-700">EdgeNova：约 42ms / 0.1%</b>。数据按所选机场动态刷新，用于前端交互演示；正式上线可接入真实测速 API。</p>
+  </div>
+</section>
+
+<script>
+  // @ts-nocheck -- 页面元素由本组件模板保证存在
+  const profiles = {
+    edgenova:{name:'边缘节点 EdgeNova',route:'IPLC 专线',latency:42,loss:.1},
+    jilianyun:{name:'极连云 JiLianYun',route:'BGP 中转',latency:48,loss:.2},
+    guangnianti:{name:'光年梯 GuangNianTi',route:'高速中转',latency:45,loss:.15},
+    yuntu:{name:'云图 YunTu',route:'金融级专线',latency:39,loss:.08},
+    speedworld:{name:'速界 SuJie',route:'游戏优化线路',latency:36,loss:.12},
+    kuaili:{name:'快狸 KuaiLi',route:'多入口线路',latency:52,loss:.25},
+    kexinyun:{name:'可信云 KeXinYun',route:'加密中转',latency:55,loss:.18},
+    shunyun:{name:'瞬云 ShunYun',route:'轻量备用线路',latency:61,loss:.35},
+    kunpeng:{name:'鲲鹏加速 KunPeng',route:'多节点线路',latency:50,loss:.22},
+  };
+  document.querySelectorAll('[data-live-speed-test]').forEach((root) => {
+    const select=root.querySelector('[data-airport-select]');
+    const latencyEl=root.querySelector('[data-latency]'); const lossEl=root.querySelector('[data-loss]');
+    const nameEl=root.querySelector('[data-airport-name]'); const routeEl=root.querySelector('[data-route]');
+    const updatedEl=root.querySelector('[data-updated]'); const summaryEl=root.querySelector('[data-summary]');
+    const latencyPath=root.querySelector('[data-latency-path]'); const lossPath=root.querySelector('[data-loss-path]');
+    let tick=0;
+    const makeSeries=(base,spread,count=16)=>Array.from({length:count},(_,i)=>Math.max(1,base+(Math.sin((i+tick)*1.37)*spread)+(Math.random()-.5)*spread));
+    const pathFor=(values,max=100)=>values.map((value,i)=>`${i?'L':'M'} ${45+i*(650/(values.length-1))} ${225-(Math.min(value,max)/max)*200}`).join(' ');
+    const render=()=>{
+      const p=profiles[select.value]||profiles.edgenova; tick++;
+      const latency=Math.max(10,Math.round(p.latency+(Math.random()-.5)*8));
+      const loss=Math.max(0,p.loss+(Math.random()-.5)*.12).toFixed(2);
+      latencyEl.textContent=`${latency}ms`; lossEl.textContent=`${loss}%`; nameEl.textContent=p.name; routeEl.textContent=p.route;
+      updatedEl.textContent=new Date().toLocaleTimeString('zh-CN',{hour12:false}); summaryEl.textContent=`${p.name}：约 ${latency}ms / ${loss}%`;
+      latencyPath.setAttribute('d',pathFor(makeSeries(p.latency,12)));
+      lossPath.setAttribute('d',pathFor(makeSeries(Math.max(5,p.loss*18),5)));
+    };
+    select.addEventListener('change',render); render(); window.setInterval(render,2500);
+  });
+</script>

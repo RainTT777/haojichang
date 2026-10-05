@@ -1,0 +1,6 @@
+---
+import LandingLayout from '../layouts/LandingLayout.astro';
+import FAQ from '../components/FAQ.astro';
+const items=[{question:'好机场是否提供代理服务？',answer:'不提供。本站是独立内容与评测博客，主要发布线路测试、工具教程和行业知识。'},{question:'推荐结果是否永久有效？',answer:'不会。网络线路和出口 IP 会持续变化，因此文章必须标注测试日期，并定期复测。'},{question:'推广链接会影响结论吗？',answer:'推广关系会明确披露。编辑结论应以测试数据和可复现方法为依据。'}];
+---
+<LandingLayout title="关于好机场" description="一个关注真实晚高峰表现、内容透明度和长期可验证性的中文网络评测博客。" eyebrow="ABOUT"><div class="grid gap-6 lg:grid-cols-[1fr_.8fr]"><article class="surface prose-cn p-8 sm:p-12"><h2>我们为什么做这个站</h2><p>节点服务常常使用模糊的线路术语和不可复现的速度截图。好机场希望把测试条件、采样时间和判断依据放回内容中心，让读者知道结论从何而来。</p><h2>编辑原则</h2><p>不以单次峰值代替长期表现，不把推广佣金当作排名依据，不隐藏对读者决策有影响的重要限制。</p></article><FAQ items={items}/></div></LandingLayout>

@@ -1,0 +1,36 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+const levels = [
+  ['观察中','官网或部分节点短时异常，尚不足以判断停止运营。','amber'],
+  ['高风险','官网、订阅、客服和主要节点连续异常，并伴随异常促销。','rose'],
+  ['已确认停服','多个渠道长期失联，核心服务停止且无有效恢复说明。','slate'],
+];
+const signals = ['官网与订阅地址连续无法访问','主要节点大面积下线且长期未恢复','客服、公告与社群同时停止更新','突然推出明显异常的长期低价套餐','退款通道关闭或大量用户反馈无法退款','频繁更换域名但不说明迁移原因'];
+const actions = ['立即停止续费和购买长期套餐','保存订单、付款记录、公告与客服对话','重新生成或撤销可能泄露的订阅链接','切换备用机场并检查重要账号登录状态','通过原支付渠道咨询退款或争议处理','避免传播未经核验的个人信息和结论'];
+const records = [
+  {name:'奈云机场（NyCloud）',status:'第三方标记：高危',active:'2026-07-02',note:'来源页面称官网及节点大面积失效、管理团队失联。',verified:false},
+  {name:'蜜糖云',status:'第三方标记：停服',active:'2026-04-18',note:'来源页面称官方群组解散、订阅服务器下线。',verified:false},
+  {name:'洞墙机场（DlerCloud）',status:'第三方标记：停服',active:'2026-02-15',note:'来源页面称官网在无预警情况下关闭。',verified:false},
+  {name:'忍者云（RenzheCloud）',status:'第三方标记：停服',active:'2025-09-12',note:'来源页面称服务端及后台面板停止运行。',verified:false},
+  {name:'SAC Cloud',status:'第三方标记：停服',active:'2025-10-05',note:'来源页面称服务器清退、运营方失联。',verified:false},
+];
+---
+<BaseLayout title="机场跑路预警、停服记录与止损指南 - 好机场" description="持续跟踪机场官网失联、订阅失效、节点下线、客服停更、退款困难与异常促销风险，并提供跑路前兆判断和止损清单。">
+  <main class="site-container alerts-page py-8 sm:py-12">
+    <section class="alert-hero">
+      <div><span>RISK MONITOR · 2026 持续更新</span><h1>机场跑路预警与停服风险汇总</h1><p>记录官网失联、订阅不可用、节点大面积下线、客服停更、退款困难和异常促销信号。单一故障不等于跑路，所有状态都应结合持续时间和多个公开证据判断。</p><div class="alert-hero__actions"><a href="#records">查看风险记录</a><a href="#self-help">跑路后如何止损</a></div></div>
+      <div class="alert-hero__mark" aria-hidden="true"><span>!</span><strong>谨慎购买长周期套餐</strong><small>先月付验证，再决定是否续费</small></div>
+    </section>
+
+    <section class="alerts-section" aria-labelledby="levels-title"><div class="alerts-heading"><span>风险状态</span><h2 id="levels-title">三级状态说明</h2><p>状态用于描述证据强度，不代表对任何服务商作法律定性。</p></div><div class="risk-levels">{levels.map(([title,description,tone])=><article class:list={['risk-level',`risk-level--${tone}`]}><h3>{title}</h3><p>{description}</p></article>)}</div></section>
+
+    <section id="records" class="alerts-section" aria-labelledby="records-title"><div class="alerts-heading"><span>持续更新</span><h2 id="records-title">机场异常与停服记录</h2><p>下列案例整理自公开第三方页面，本站尚未完成独立核验，仅供历史避坑检索，不应作为付款争议或法律判断的唯一依据。</p></div><div class="source-warning"><b>信息来源说明</b><span>第三方资料记录 ≠ 本站确认；状态可能随服务恢复、域名迁移或后续公告发生变化。</span></div><div class="alert-table-wrap"><table class="alert-table"><thead><tr><th>机场名称</th><th>第三方风险标签</th><th>最后活跃记录</th><th>来源摘要</th><th>核验状态</th></tr></thead><tbody>{records.map(record=><tr><td><strong>{record.name}</strong></td><td><span class="third-party-status">{record.status}</span></td><td>{record.active}</td><td>{record.note}</td><td><span class="verify-pending">待独立核验</span></td></tr>)}</tbody></table></div><p class="records-source">参考来源：<a href="https://jichang365.com/avoid-scam" target="_blank" rel="nofollow noopener noreferrer">云轨导航机场防跑路预警页面</a>，本站整理日期：2026-10-05。</p></section>
+
+    <div class="alerts-two-column">
+      <section class="alerts-section" aria-labelledby="signals-title"><div class="alerts-heading"><span>识别风险</span><h2 id="signals-title">常见跑路前兆</h2></div><ol class="alert-checklist">{signals.map((item,index)=><li><b>{String(index+1).padStart(2,'0')}</b><span>{item}</span></li>)}</ol></section>
+      <section id="self-help" class="alerts-section" aria-labelledby="actions-title"><div class="alerts-heading"><span>应急处理</span><h2 id="actions-title">已购用户止损清单</h2></div><ol class="alert-checklist">{actions.map((item,index)=><li><b>{String(index+1).padStart(2,'0')}</b><span>{item}</span></li>)}</ol></section>
+    </div>
+
+    <section class="alerts-note"><h2>重要说明</h2><p>机场节点短时维护、域名受阻或单一线路故障，都不能单独作为跑路结论。本站会优先核对官网、订阅、节点、公告、客服和退款渠道，并为每条记录保留更新时间。购买时建议以月付和小额套餐为主，始终准备独立备用方案。</p><a href="/faq/#risk">查看退款、失联与跑路应急 FAQ →</a></section>
+  </main>
+</BaseLayout>

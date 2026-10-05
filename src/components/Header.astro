@@ -1,0 +1,18 @@
+---
+import { nav } from '../data/nav';
+import { site } from '../data/site';
+const path = Astro.url.pathname;
+---
+<header class="sticky top-0 z-50 h-16 border-b border-cyan-300/50 bg-gradient-to-r from-[#e9fbff]/95 via-[#eef7ff]/95 to-[#f1efff]/95 shadow-lg shadow-cyan-900/10 backdrop-blur-xl">
+  <div class="site-container grid h-full grid-cols-[190px_1fr_220px] items-center gap-5 max-lg:grid-cols-[1fr_auto]">
+    <a href="/" class="flex items-center gap-2" aria-label={`${site.name}首页`}>
+      <svg class="h-10 w-10" viewBox="0 0 50 50" aria-hidden="true"><defs><linearGradient id="brand-gradient" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#24cad4"/><stop offset="1" stop-color="#087cd9"/></linearGradient></defs><path d="M9 7h11l-3 13h15l3-13h10l-8 36H27l3-14H15l-3 14H2Z" fill="url(#brand-gradient)"/><path d="m22 5 7 7-5 5-7-7Z" fill="#ddfbff"/></svg>
+      <span><strong class="block text-xl leading-5 font-black tracking-tight text-slate-900">好机场</strong><small class="block text-[10px] leading-4 text-cyan-700/75">Haojichang.net</small></span>
+    </a>
+    <nav class="flex h-full items-stretch justify-center gap-7 max-lg:hidden" aria-label="主导航">
+      {nav.map((item)=><a href={item.href} class:list={["relative flex items-center text-sm font-semibold text-slate-700 transition hover:text-cyan-600",path===item.href&&"text-cyan-700 after:absolute after:inset-x-0 after:bottom-0 after:h-[3px] after:bg-cyan-400"]}>{item.label}</a>)}
+    </nav>
+    <form action="/blog/" class="relative max-lg:hidden" role="search"><label class="sr-only" for="site-search">搜索内容</label><input id="site-search" name="q" type="search" placeholder="搜索机场指南" class="h-9 w-full rounded-lg border border-cyan-300/55 bg-white/70 px-3 pr-9 text-xs text-slate-800 outline-none placeholder:text-slate-400 focus:border-cyan-500"><svg class="absolute top-2 right-3 h-4 w-4 text-cyan-600" viewBox="0 0 24 24" fill="none"><circle cx="10.5" cy="10.5" r="6.5" stroke="currentColor" stroke-width="2"/><path d="m15.5 15.5 4 4" stroke="currentColor" stroke-width="2"/></svg></form>
+    <a href="/blog/" class="hidden rounded-md bg-cyan-500 px-4 py-2 text-xs font-bold text-white max-lg:block">文章</a>
+  </div>
+</header>

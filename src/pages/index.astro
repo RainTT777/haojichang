@@ -1,0 +1,76 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import LiveSpeedTest from '../components/LiveSpeedTest.astro';
+import FAQHomeCard from '../components/FAQHomeCard.astro';
+import WeeklyRanking from '../components/WeeklyRanking.astro';
+import AlertCard from '../components/AlertCard.astro';
+
+const guideKeywords = [
+  { title: '2026 稳定机场推荐怎么选', href: '/blog/stable-airport-selection-2026/' },
+  { title: 'IPLC 专线机场适合什么人', href: '/blog/iplc-airport-for-whom/' },
+  { title: 'IEPL 与公网中转线路区别', href: '/blog/iepl-vs-public-transit/' },
+  { title: '机场晚高峰延迟怎么看', href: '/blog/peak-hour-latency-guide/' },
+  { title: '机场流量倍率怎么计算', href: '/blog/traffic-multiplier-calculation/' },
+  { title: 'ChatGPT 原生解锁机场选择', href: '/blog/chatgpt-native-unlock-selection/' },
+  { title: '新手购买机场避坑指南', href: '/blog/beginner-airport-buying-guide/' },
+  { title: '机场节点丢包率多少正常', href: '/blog/normal-node-packet-loss/' },
+];
+const notices = ['机场选购前需要核对的六项指标','IPLC 与 IEPL 专线差异说明','晚高峰测速与丢包判断方法','机场订阅失效的常见排查步骤','2026 机场优惠信息持续更新'];
+const coupons = [
+  ['EdgeNova','xk808'],
+  ['极连云','JLY888'],
+  ['快狸','kl888'],
+  ['速界','sujie888'],
+  ['可信云','kxy80'],
+  ['云图','yt88'],
+  ['光年梯','GNT80'],
+];
+const schema = {'@context':'https://schema.org','@type':'ItemList',name:'2026 稳定专线机场推荐',itemListElement:[{'@type':'ListItem',position:1,item:{'@type':'Service',name:'EdgeNova 优选线路',offers:{'@type':'Offer',price:'15',priceCurrency:'CNY'}}}]};
+---
+
+<BaseLayout>
+  <Fragment slot="head"><script type="application/ld+json" set:html={JSON.stringify(schema)} /></Fragment>
+  <main class="site-container py-4">
+    <h1 class="sr-only">2026 机场推荐：稳定高速 IPLC、IEPL 专线机场晚高峰实测与 AI 解锁指南</h1>
+    <div class="home-grid">
+      <div class="grid gap-4">
+        <LiveSpeedTest />
+        <section class="surface guide-sidebar p-4">
+          <div class="guide-horizontal__head"><h2 class="home-title mb-0">机场指南</h2><a href="/blog/" class="text-sm font-bold text-cyan-700">文章库 →</a></div>
+          <a href="/blog/" class="guide-feature-image group" aria-label="进入机场指南文章库">
+            <img src="https://i.ibb.co/gZhYmrkw/5425c780-db59-4e47-9e72-45a5877f3ea2.jpg" alt="好机场机场选购指南与代理节点科普文章配图" width="1024" height="576" loading="lazy" referrerpolicy="no-referrer" />
+            <span>机场科普文章库 <b>→</b></span>
+          </a>
+          <div class="guide-keyword-intro"><span>机场指南 · 科普长尾词</span><p>围绕线路、套餐、测速、解锁与新手选购整理的机场知识入口。</p></div>
+          <div class="guide-keywords">{guideKeywords.map((item)=><a href={item.href}>{item.title}<span>→</span></a>)}</div>
+        </section>
+      </div>
+
+      <div class="home-center">
+        <section class="surface airport-spotlight p-4">
+          <div class="airport-spotlight__head"><div><span>2026 EDITOR'S CHOICE</span><h2 class="home-title mb-0">机场精选推荐</h2></div><a href="/blog/example-post/">查看完整推荐 →</a></div>
+          <a href="/blog/example-post/" class="airport-spotlight__visual group">
+            <img src="https://i.ibb.co/zhT60ZKf/5e51255b-9a2d-4b64-a337-18fece52e539.jpg" alt="2026机场推荐与稳定高速 IPLC IEPL 专线机场评测封面" width="1024" height="576" loading="eager" fetchpriority="high" />
+            <div class="airport-spotlight__overlay"></div>
+            <div class="airport-spotlight__copy"><div><span>2026 精选</span><span>持续更新</span></div><h3>2026 机场推荐：稳定高速 IPLC / IEPL 专线机场精选</h3><p>晚高峰参考 · 流媒体解锁 · ChatGPT 原生访问验证</p></div>
+          </a>
+          <details class="neon-summary"><summary>30 秒快速决策摘要（AI 快速概览）</summary><div><p><b>线路：</b>优先 IPLC / IEPL 或高质量中转</p><p><b>实测：</b>同时观察延迟、丢包与抖动</p><p><b>解锁：</b>分别验证流媒体与 ChatGPT</p></div></details>
+        </section>
+        <div class="home-square-row"><div class="home-square"><FAQHomeCard /></div><div class="home-square"><AlertCard /></div></div>
+      </div>
+
+      <aside class="home-aside">
+        <WeeklyRanking />
+        <section class="surface deals-card overflow-hidden p-3">
+          <div class="deals-panel rounded-xl p-4">
+            <div class="deals-panel__head"><div><span>LIMITED COUPONS</span><h2>机场优惠码</h2></div><b>限时</b></div>
+            <p class="deals-panel__intro">下单前复制优惠码，并以机场结算页面显示的实际折扣为准。</p>
+            <div class="coupon-list">{coupons.map(([name,code])=><div class="coupon-item"><span>{name}</span><code>{code}</code></div>)}</div>
+            <a href="/deals/" class="deals-panel__button">查看全部机场优惠 →</a>
+          </div>
+        </section>
+        <section class="surface p-4"><h2 class="home-title">最新公告</h2><ul class="grid gap-3">{notices.map(notice=><li class="notice-item"><a href="/guides/">{notice}</a></li>)}</ul></section>
+      </aside>
+    </div>
+  </main>
+</BaseLayout>

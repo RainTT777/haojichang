@@ -1,0 +1,32 @@
+---
+import { site } from '../data/site';
+---
+<footer class="site-footer mt-8 border-t border-slate-200 bg-white">
+  <div class="site-container grid gap-8 py-8 lg:grid-cols-[1.25fr_.8fr_.8fr_1fr]">
+    <section>
+      <a href="/" class="inline-flex items-center gap-3" aria-label="好机场首页">
+        <span class="grid h-11 w-11 place-items-center rounded-xl bg-gradient-to-br from-cyan-400 to-violet-500 text-xl font-black text-white">H</span>
+        <span><strong class="block text-lg text-slate-950">好机场</strong><small class="text-sm text-slate-500">{site.domain}</small></span>
+      </a>
+      <p class="mt-4 max-w-md text-sm leading-7 text-slate-600">专注稳定网络节点评测、IPLC / IEPL 晚高峰实测，以及流媒体与 AI 原生解锁能力验证。</p>
+    </section>
+    <section>
+      <h2 class="text-base font-bold text-slate-950">内容导航</h2>
+      <nav class="mt-3 grid gap-2.5 text-sm text-slate-600"><a href="/blog/">深度评测</a><a href="/topics/">专题聚合</a><a href="/brands/">品牌档案</a><a href="/compare/">方案对比</a></nav>
+    </section>
+    <section>
+      <h2 class="text-base font-bold text-slate-950">站点信息</h2>
+      <nav class="mt-3 grid gap-2.5 text-sm text-slate-600"><a href="/about/">关于我们</a><a href="/category/tutorial/">使用教程</a><a href="/blog/">测速机制说明</a><a href="/about/">免责声明</a></nav>
+    </section>
+    <section>
+      <h2 class="text-base font-bold text-slate-950">加入交流</h2>
+      <p class="mt-3 text-sm leading-6 text-slate-600">获取最新测速报告、节点动态和优惠信息。</p>
+      <a href={site.telegram} target="_blank" rel="nofollow noopener" class="mt-4 inline-flex rounded-lg bg-cyan-500 px-5 py-3 text-sm font-bold text-white shadow-sm hover:bg-cyan-600">加入 Telegram 讨论群</a>
+    </section>
+  </div>
+  <div class="border-t border-slate-100">
+    <div class="site-container flex flex-col gap-2 py-4 text-sm text-slate-500 sm:flex-row sm:items-center sm:justify-between">
+      <p>© 2026 {site.domain}. All rights reserved.</p><p>独立实测 · 客观记录 · 持续更新</p>
+    </div>
+  </div>
+</footer>
