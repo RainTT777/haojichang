@@ -1,0 +1,17 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="页面未找到 - 好机场" description="你访问的页面不存在，请返回好机场首页或机场指南文章库。">
+  <main class="site-container grid min-h-[65vh] place-items-center py-16">
+    <section class="surface w-full max-w-3xl p-8 text-center sm:p-14">
+      <span class="text-sm font-black tracking-[.18em] text-brand-600">404 NOT FOUND</span>
+      <h1 class="mt-4 text-4xl font-black text-ink-950 sm:text-5xl">页面不存在</h1>
+      <p class="mx-auto mt-5 max-w-xl text-base leading-8 text-slate-600">当前链接可能已经调整，或者输入的地址有误。你可以返回首页查看机场推荐，也可以进入机场指南文章库继续阅读。</p>
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
+        <a class="rounded-full bg-brand-500 px-6 py-3 text-sm font-black text-white" href="/">返回首页</a>
+        <a class="rounded-full border border-brand-200 bg-white px-6 py-3 text-sm font-black text-brand-600" href="/blog/">机场指南</a>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

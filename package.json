@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro check && astro build",
+    "build": "astro check && astro build && node scripts/verify-seo-files.mjs",
     "preview": "astro preview",
     "preview:index": "node scripts/generate-preview.mjs",
     "check:links": "node scripts/check-internal-links.mjs",
