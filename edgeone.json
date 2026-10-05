@@ -1,12 +1,18 @@
 {
-  "redirects": [
+  "headers": [
     {
       "source": "/sitemap.xml",
-      "destination": "/sitemap-index.xml",
-      "statusCode": 301
-    }
-  ],
-  "headers": [
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/xml; charset=utf-8"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600"
+        }
+      ]
+    },
     {
       "source": "/sitemap-index.xml",
       "headers": [

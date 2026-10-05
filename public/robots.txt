@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://haojichang.net/sitemap-index.xml
+Sitemap: https://haojichang.net/sitemap.xml
