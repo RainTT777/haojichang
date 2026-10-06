@@ -6,7 +6,7 @@ import WeeklyRanking from '../components/WeeklyRanking.astro';
 import AlertCard from '../components/AlertCard.astro';
 
 const guideKeywords = [
-  { title: '2026 稳定机场推荐怎么选', href: '/blog/stable-airport-selection-2026/' },
+  { title: '2026年稳定好用机场推荐排行榜', href: '/blog/stable-airport-selection-2026/' },
   { title: 'IPLC 专线机场适合什么人', href: '/blog/iplc-airport-for-whom/' },
   { title: 'IEPL 与公网中转线路区别', href: '/blog/iepl-vs-public-transit/' },
   { title: '机场晚高峰延迟怎么看', href: '/blog/peak-hour-latency-guide/' },
@@ -25,13 +25,13 @@ const coupons = [
   ['云图','yt88'],
   ['光年梯','GNT80'],
 ];
-const schema = {'@context':'https://schema.org','@type':'ItemList',name:'2026 稳定专线机场推荐',itemListElement:[{'@type':'ListItem',position:1,item:{'@type':'Service',name:'EdgeNova 优选线路',offers:{'@type':'Offer',price:'15',priceCurrency:'CNY'}}}]};
+const schema = {'@context':'https://schema.org','@type':'ItemList',name:'2026年稳定好用机场推荐与最新高性价比翻墙梯子排行榜',description:'面向小白用户的靠谱翻墙机场避坑与选购攻略，综合比较线路、晚高峰、流媒体、AI解锁、套餐与售后。',itemListElement:[{'@type':'ListItem',position:1,item:{'@type':'Service',name:'EdgeNova 优选线路',offers:{'@type':'Offer',price:'15',priceCurrency:'CNY'}}}]};
 ---
 
 <BaseLayout>
   <Fragment slot="head"><script type="application/ld+json" set:html={JSON.stringify(schema)} /></Fragment>
   <main class="site-container py-4">
-    <h1 class="sr-only">2026 机场推荐：稳定高速 IPLC、IEPL 专线机场晚高峰实测与 AI 解锁指南</h1>
+    <h1 class="sr-only">2026年稳定好用机场推荐：最新高性价比翻墙梯子排行榜，小白如何选择靠谱翻墙机场？避坑与选购全攻略</h1>
     <div class="home-grid">
       <div class="grid gap-4">
         <LiveSpeedTest />
@@ -50,11 +50,11 @@ const schema = {'@context':'https://schema.org','@type':'ItemList',name:'2026 �
         <section class="surface airport-spotlight p-4">
           <div class="airport-spotlight__head"><div><span>2026 EDITOR'S CHOICE</span><h2 class="home-title mb-0">机场精选推荐</h2></div><a href="/blog/example-post/">查看完整推荐 →</a></div>
           <a href="/blog/example-post/" class="airport-spotlight__visual group">
-            <img src="https://i.ibb.co/zhT60ZKf/5e51255b-9a2d-4b64-a337-18fece52e539.jpg" alt="2026机场推荐与稳定高速 IPLC IEPL 专线机场评测封面" width="1024" height="576" loading="eager" fetchpriority="high" />
+            <img src="https://i.ibb.co/zhT60ZKf/5e51255b-9a2d-4b64-a337-18fece52e539.jpg" alt="2026年稳定好用机场推荐与高性价比翻墙梯子排行榜" width="1024" height="576" loading="eager" fetchpriority="high" />
             <div class="airport-spotlight__overlay"></div>
-            <div class="airport-spotlight__copy"><div><span>2026 精选</span><span>持续更新</span></div><h3>2026 机场推荐：稳定高速 IPLC / IEPL 专线机场精选</h3><p>晚高峰参考 · 流媒体解锁 · ChatGPT 原生访问验证</p></div>
+            <div class="airport-spotlight__copy"><div><span>2026 精选</span><span>持续更新</span></div><h3>2026年稳定好用机场推荐：最新高性价比翻墙梯子排行榜，小白如何选择靠谱翻墙机场？避坑与选购全攻略</h3><p>月付套餐对比 · 晚高峰实测 · IPLC / IEPL 线路 · 流媒体与 ChatGPT 解锁 · 跑路风险排查</p></div>
           </a>
-          <details class="neon-summary"><summary>30 秒快速决策摘要（AI 快速概览）</summary><div><p><b>线路：</b>优先 IPLC / IEPL 或高质量中转</p><p><b>实测：</b>同时观察延迟、丢包与抖动</p><p><b>解锁：</b>分别验证流媒体与 ChatGPT</p></div></details>
+          <details class="neon-summary"><summary>30 秒快速决策摘要（AI 快速概览）</summary><div><p><b>靠谱：</b>优先月付、运营记录清晰且售后稳定</p><p><b>线路：</b>晚高峰同时观察延迟、丢包、抖动与倍率</p><p><b>需求：</b>分别验证流媒体、ChatGPT、游戏与多设备兼容</p></div></details>
         </section>
         <div class="home-square-row"><div class="home-square"><FAQHomeCard /></div><div class="home-square"><AlertCard /></div></div>
       </div>

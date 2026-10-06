@@ -124,7 +124,7 @@ body { margin: 0; min-width: 320px; background-color: #eaf8ff; background-image:
 .airport-spotlight__copy { position:absolute; right:26px; bottom:24px; left:26px; color:white; }
 .airport-spotlight__copy > div { display:flex; gap:8px; margin-bottom:10px; }
 .airport-spotlight__copy > div span { border:1px solid rgba(165,243,252,.5); border-radius:999px; background:rgba(6,182,212,.8); padding:5px 10px; font-size:.72rem; font-weight:900; box-shadow:0 0 15px rgba(34,211,238,.28); }
-.airport-spotlight__copy h3 { max-width:850px; font-size:clamp(1.55rem,2.4vw,2.7rem); line-height:1.18; font-weight:950; text-shadow:0 2px 20px rgba(0,0,0,.35); }
+.airport-spotlight__copy h3 { max-width:980px; font-size:clamp(1.4rem,2vw,2.25rem); line-height:1.2; font-weight:950; text-shadow:0 2px 20px rgba(0,0,0,.35); }
 .airport-spotlight__copy p { margin-top:9px; color:#d8f7ff; font-size:.92rem; }
 .neon-summary { margin-top:12px; border:1px solid rgba(103,232,249,.75); border-radius:12px; background:linear-gradient(90deg,rgba(236,254,255,.82),rgba(238,242,255,.82)); }
 .neon-summary summary { cursor:pointer; padding:12px 14px; color:#0e7490; font-size:.86rem; font-weight:900; }
